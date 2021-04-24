@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {Route, Switch} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import {ROUTE_PATH} from "config/constants";
 import userRoutes from "../routes"
 import LoadingScreen from "components/Loading/Loading";
+import DarkModeSwitch from "components/DarkModeSwitch/DarkModeSwitch";
 
 const getRoutes = routes => {
   return routes.map((prop, key) => {
@@ -17,9 +18,7 @@ const getRoutes = routes => {
           key={key}
         />
       );
-    }
-  else
-    {
+    } else {
       return null;
     }
   });
@@ -39,9 +38,13 @@ const UserLayout = () => {
         {loading ?
           <LoadingScreen/>
           :
-          <Switch>
-            {getRoutes(userRoutes)}
-          </Switch>}
+          <>
+            <DarkModeSwitch/>
+            <Switch>
+              {getRoutes(userRoutes)}
+              <Redirect from="/u" to="/u/home"/>
+            </Switch>
+          </>}
       </div>
     </>
   )

@@ -1,3 +1,10 @@
+root {
+  --primary-black: #16171b;
+  --secondary-black: #1d1e22;
+  --primary-blue: #1f67f9;
+  --primary-blue-2: #2d45c2;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -11,4 +18,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+* {
+  box-sizing: content-box;
 }

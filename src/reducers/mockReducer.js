@@ -1,12 +1,6 @@
-import axios from 'axios';
-
 import {FAILURE, REQUEST, SUCCESS} from 'utils/action-types.js';
+import {ACTION_TYPES} from "../actions/mockAction";
 
-import fetchMockData from 'services/mock'
-
-export const ACTION_TYPES = {
-  GET_MOCK_DATA: "GET_MOCK_DATA"
-}
 
 const initialState = {
   mockData: {},
@@ -18,8 +12,8 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case REQUEST(ACTION_TYPES.GET_MOCK_DATA):
       return {
+        ...state,
         loading: true,
-        ...state
       };
     case FAILURE(ACTION_TYPES.GET_MOCK_DATA):
       return {

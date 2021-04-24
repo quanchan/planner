@@ -10,12 +10,14 @@ import initStore from './config/store';
 import {Provider} from "react-redux";
 
 const store = initStore();
-Sentry.init({
-  dsn: process.env.REACT_APP_SENTRY_DSN,
-  release: `${process.env.REACT_APP_NAME}@${process.env.REACT_APP_VERSION}`,
-  integrations: [new Integrations.BrowserTracing()],
-  tracesSampleRate: 1.0,
-});
+export const state = store.getState()
+// Sentry.init({
+//   dsn: process.env.REACT_APP_SENTRY_DSN,
+//   release: `${process.env.REACT_APP_NAME}@${process.env.REACT_APP_VERSION}`,
+//   integrations: [new Integrations.BrowserTracing()],
+//   tracesSampleRate: 1.0,
+// });
+
 
 const render = Component => ReactDOM.hydrate(
   <Provider store={store}>

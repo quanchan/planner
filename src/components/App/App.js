@@ -1,59 +1,40 @@
-import React, { Component } from "react";
-import { BrowserRouter } from 'react-router-dom';
-import { MuiThemeProvider } from "@material-ui/core/styles";
+import React from "react";
+import {BrowserRouter} from 'react-router-dom';
+import {MuiThemeProvider} from "@material-ui/core/styles";
 
-import { CssBaseline} from "@material-ui/core";
-import Routes from '../../app-routers';
-import appearance from "../../services/appearance";
+import {CssBaseline} from "@material-ui/core";
+import Routes from 'app-routers';
+import {darkTheme, lightTheme} from "styles/theme";
+import {connect} from "react-redux";
 
 
-const initialState = {
-  theme: appearance.defaultTheme,
-};
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = initialState;
+const App = (props) => {
+  let theme
+  switch (props.theme) {
+    case "dark":
+      theme = darkTheme;
+      break;
+    case "light":
+      theme = lightTheme;
+      break;
+    default:
+      theme = darkTheme;
+      break;
   }
-
-  setTheme = (theme, callback) => {
-    if (!theme) {
-      this.setState(
-        {
-          theme: appearance.defaultTheme,
-        },
-        callback
-      );
-
-      return;
-    }
-
-    this.setState(
-      {
-        theme: appearance.createTheme(theme),
-      },
-      callback
-    );
-  };
-
-
-  render() {
-    const {
-      theme,
-    } = this.state;
-
-    return (
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <BrowserRouter>
-          <Routes />
-        </BrowserRouter>
-      </MuiThemeProvider>
-    );
-  }
-
+  return (
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline/>
+      <BrowserRouter>
+        <Routes/>
+      </BrowserRouter>
+    </MuiThemeProvider>
+  );
 }
 
-export default App;
+export default connect(
+  ({styles}) => ({
+    theme: styles.theme,
+  }),
+  {}
+)(App);
+
