@@ -17,6 +17,7 @@ export const darkTheme = createMuiTheme({
     },
     background : {
       default: "#16171b",
+      paper: "#1d1e22"
     }
   },
   ...scDark

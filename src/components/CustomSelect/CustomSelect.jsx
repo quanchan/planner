@@ -9,20 +9,49 @@ import PropTypes from 'prop-types';
 
 
 const CustomSelect = (props) => {
+  // Props
   const {values, value, onChange, color} = props
 
+  // States & Logic
+  const notFullWidth = values.filter((value) => !value.fullWidth).length
+  let initialSelectedId
+  let total = values.filter((ele) => ele.total === true)
+  let totalLength = total.length
+  if (totalLength === 0) {
+    initialSelectedId = []
+  } else if (totalLength === 1) {
+    initialSelectedId = [total[0].id]
+  } else {
+    throw "Can only have one total element"
+  }
+  initialSelectedId = value === "" ? initialSelectedId : value
+  const [selectedId, setSelectedId] = useState(initialSelectedId)
+  const initialSelected = values.filter((value) => initialSelectedId.findIndex((id) => id === value.id) > -1)
+  const [selected, setSelected] = useState(initialSelected)
+
+  //UseEffect
+  useEffect(() => {
+    onChange(selectedId)
+  }, [])
+  useEffect(() => {
+    const newSelectedId = selected.map((select) => select.id)
+    setSelectedId(newSelectedId)
+  }, [selected])
+  useEffect(() => {
+    onChange(selectedId)
+  }, [selectedId])
+
+  // Styles
   const styles = theme => ({
     customSelect: {},
     customSelectEle: {
       cursor: "pointer",
-      width: 100,
       height: 40,
       borderRadius: sc.borderRadius.sm,
       ...sc.flexCenterCenter,
       margin: 8,
-      background: theme.focusFilter
-
-
+      background: theme.focusFilter,
+      width: `calc(100%/${notFullWidth} - 16px)`
     },
     selected: {
       background: color || theme.color.primaryBlue,
@@ -36,25 +65,7 @@ const CustomSelect = (props) => {
   const useStyles = makeStyles(styles)
   const classes = useStyles()
 
-  let initialSelected
-  let total = values.filter((ele) => ele.total === true)
-  let totalLength = total.length
-  if (totalLength === 0) {
-    initialSelected = []
-  } else if (totalLength === 1) {
-    initialSelected = [total[0]]
-  } else {
-    throw "Can only have one total element"
-  }
-  initialSelected = value === "" ? initialSelected : value
-  const [selected, setSelected] = useState(initialSelected)
-  useEffect(() => {
-    onChange(selected)
-  }, [])
-  useEffect(() => {
-    onChange(selected)
-  }, [selected])
-
+  // Helper function
   const handleSelect = (ele) => {
     if (ele.total || selected.length === 0) {
       setSelected([ele])

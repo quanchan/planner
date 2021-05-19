@@ -68,7 +68,7 @@ const IconPicker = (props) => {
 
   const classes = useStyles()
 
-  const icons = [
+  const icons = props.values || [
     mdiAccountGroup, mdiAlarm, mdiBookOpenPageVariantOutline, mdiBrain, mdiCamera, mdiCar, mdiCashMultiple, mdiCellphoneErase, mdiChat, mdiChefHat, mdiClockTimeEightOutline,
     mdiDraw, mdiDumbbell, mdiEmoticonExcited, mdiEye, mdiFinance, mdiGoogleController, mdiHandHeart, mdiHanger, mdiHeartMultiple, mdiHospitalBoxOutline, mdiLaptop, mdiMeditation,
     mdiMotorbike, mdiMusicClefTreble, mdiPalette, mdiPaw, mdiPen, mdiRunFast, mdiShieldPlus, mdiShower, mdiSleep, mdiWalk, mdiPill

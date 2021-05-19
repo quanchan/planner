@@ -9,19 +9,38 @@ import PropTypes from 'prop-types';
 
 
 const CustomRadio = (props) => {
+  //Props
   const {values, value, onChange, color} = props
 
+  //States & Logic
+  const notFullWidth = values.filter((value) => !value.fullWidth).length
+  const initialSelectedId = value
+  const [selectedId, setSelectedId] = useState(initialSelectedId)
+  const initialSelected = values.filter(value => value.id === selectedId)[0] || {id: "N/A"}
+  const [selected, setSelected] = useState(initialSelected)
+
+  //UseEffect
+  useEffect(() => {
+    onChange(selectedId)
+  }, [])
+  useEffect(() => {
+    setSelectedId(selected.id)
+  }, [selected])
+  useEffect(() => {
+    onChange(selectedId)
+  }, [selectedId])
+
+  //Styles
   const styles = theme => ({
     customSelect: {},
     customSelectEle: {
       cursor: "pointer",
-      width: 100,
       height: 40,
       borderRadius: sc.borderRadius.sm,
       ...sc.flexCenterCenter,
       margin: 8,
-      background: theme.focusFilter
-
+      background: theme.focusFilter,
+      width: `calc(100%/${notFullWidth} - 16px)`
 
     },
     selected: {
@@ -34,20 +53,10 @@ const CustomRadio = (props) => {
       width: "100%"
     }
   })
-
   const useStyles = makeStyles(styles)
-
   const classes = useStyles()
 
-  let initialSelected = value === "" ? {} : value
-
-  const [selected, setSelected] = useState(initialSelected)
-  useEffect(() => {
-    onChange(selected)
-  }, [])
-  useEffect(() => {
-    onChange(selected)
-  }, [selected])
+  //Helper Functions
   const handleSelect = (ele) => {
     setSelected(ele)
   }
@@ -57,6 +66,7 @@ const CustomRadio = (props) => {
     }
     return ""
   }
+
 
   return (
     <Grid container className={classes.customSelect}>

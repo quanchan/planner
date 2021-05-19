@@ -23,3 +23,51 @@ code {
 * {
   box-sizing: content-box;
 }
+
+/*Custom Calendar*/
+.react-calendar__tile--now {
+  color: #1DE9B6!important;
+  background: none!important;
+}
+
+.react-calendar {
+  background: unset!important;
+}
+
+.react-calendar button {
+  border: none;
+  color: inherit;
+  padding: unset;
+  border-radius: 4px;
+}
+
+.react-calendar button:hover {
+  background: #a8a8a8!important;
+}
+
+.react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
+  background: #1087ff!important;
+}
+
+.react-calendar button:focus {
+  background: #a8a8a8!important;
+}
+
+.react-calendar__tile {
+  width: 40px;
+  height: 40px;
+  max-width: unset!important;
+}
+
+.react-calendar__navigation {
+  padding: 8px;
+  border-bottom: 1px #a8a8a8 solid ;
+}
+
+.react-calendar abbr[title] {
+  text-decoration: none;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  visibility: hidden;
+}

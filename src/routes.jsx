@@ -1,7 +1,9 @@
 import { ROUTE_PATH } from "./config/constants";
 
 import Home from "views/pages/Home"
-import Create from "views/pages/Habits/Create";
+import CreateHabit from "views/pages/Habits/CreateHabit";
+import ViewHabit from "views/pages/Habits/ViewHabit";
+import ViewSpecificHabit from "views/pages/Habits/ViewSpecificHabit";
 
 const dashRoutes = [
   {
@@ -11,12 +13,25 @@ const dashRoutes = [
     layout: ROUTE_PATH.USER
   },
   {
-    path: "/habits",
+    path: "/habits-create",
     name: "Create Habit",
-    component: Create,
+    component: CreateHabit,
     layout: ROUTE_PATH.USER
+  },
+  {
+    path: "/habits-view/:id",
+    name: "View Habit",
+    component: ViewSpecificHabit,
+    layout: ROUTE_PATH.USER,
+  },
+  {
+    path: "/habits-view",
+    name: "View Habit",
+    component: ViewHabit,
+    layout: ROUTE_PATH.USER
+  },
 
-  }
+
 ]
 
 export default dashRoutes

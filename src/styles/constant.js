@@ -4,8 +4,13 @@ export const sc = {
   },
   flexCenterCenter: {
     display: "flex",
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
+  },
+  flexCenterBetween: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
   }
 }
 export const scDark = {
@@ -18,7 +23,7 @@ export const scDark = {
     lightGreen: "#00e676",
     yellow: "#fdd835",
     orange: "#ffa000",
-    cyan: "#64ffda",
+    cyan: "#1DE9B6",
     red: "#e53935",
     lightBlue: "#4fc3f7",
     pinkOrange: "#ff8a80",
@@ -38,7 +43,7 @@ export const scLight = {
     lightGreen: "#00e676",
     yellow: "#fdd835",
     orange: "#ffa000",
-    cyan: "#64ffda",
+    cyan: "#1DE9B6",
     red: "#e53935",
     lightBlue: "#4fc3f7",
     pinkOrange: "#ff8a80",
